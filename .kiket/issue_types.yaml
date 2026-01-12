@@ -1,0 +1,54 @@
+model_version: "1.0"
+
+issue_types:
+  campaign:
+    name: Campaign
+    description: Marketing campaign
+    icon: "📢"
+    color: "#8B5CF6"
+    workflow: campaign
+    fields:
+      - key: campaign_type
+        type: enum
+        label: Campaign Type
+        options: [product_launch, webinar, content, email, social, event]
+      - key: target_audience
+        type: string
+        label: Target Audience
+      - key: budget
+        type: number
+        label: Budget ($)
+      - key: start_date
+        type: date
+        label: Start Date
+      - key: end_date
+        type: date
+        label: End Date
+      - key: channels
+        type: multi_enum
+        label: Channels
+        options: [email, social, ppc, seo, pr, events]
+      - key: roi
+        type: number
+        label: ROI (%)
+
+  content:
+    name: Content
+    description: Content piece (blog, video, etc.)
+    icon: "📝"
+    color: "#EC4899"
+    workflow: content
+    fields:
+      - key: content_type
+        type: enum
+        label: Content Type
+        options: [blog_post, video, whitepaper, case_study, social_post, email]
+      - key: target_keywords
+        type: string
+        label: Target Keywords
+      - key: publish_date
+        type: date
+        label: Publish Date
+      - key: author
+        type: string
+        label: Author

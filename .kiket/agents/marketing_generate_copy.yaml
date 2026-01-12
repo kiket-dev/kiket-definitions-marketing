@@ -1,0 +1,56 @@
+model_version: "1.0"
+id: ai.marketing.generate_copy
+version: 1.0.0
+name: Copy Generator
+description: Generate marketing copy drafts based on campaign briefs.
+
+prompt: |
+  Generate marketing copy for this campaign.
+
+  **Campaign:**
+  - Title: {{issue.title}}
+  - Objective: {{issue.custom_fields.objective}}
+  - Target Audience: {{issue.custom_fields.target_audience}}
+  - Key Messages: {{issue.custom_fields.key_messages}}
+  - Tone: {{issue.custom_fields.tone}}
+  - Channels: {{issue.custom_fields.channels}}
+
+  **Brand Voice Guidelines:**
+  {{context.brand_voice}}
+
+  **Copy Type:** {{input.type}}
+
+  Generate appropriate copy variations:
+  {{#if (eq input.type "draft")}}
+  - Provide 3 headline options
+  - Write body copy for primary channel
+  - Include call-to-action variations
+  {{/if}}
+  {{#if (eq input.type "social")}}
+  - Twitter/X post (280 chars)
+  - LinkedIn post (professional tone)
+  - Instagram caption (engaging, with hashtags)
+  {{/if}}
+  {{#if (eq input.type "email")}}
+  - Subject line options (3)
+  - Preview text
+  - Email body with clear CTA
+  {{/if}}
+
+  Mark this as DRAFT - requires human review before use.
+
+capabilities:
+  - copy_generation
+  - content_creation
+
+context:
+  required:
+    - documents
+
+human_in_loop:
+  required: true
+  reason: All generated copy must be reviewed before publication
+
+metadata:
+  output_format: markdown
+  max_tokens: 1500

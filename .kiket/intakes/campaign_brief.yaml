@@ -1,0 +1,131 @@
+model_version: "1.0"
+intake:
+  id: campaign-brief
+  name: Campaign Brief
+  description: Submit a new marketing campaign request.
+  version: 1.0.0
+
+  public: false
+  slug: campaign
+
+  branding:
+    title: "New Campaign Request"
+    subtitle: "Submit a campaign brief for the marketing team."
+
+  issue:
+    type: campaign
+    workflow: campaign
+    initial_state: brief
+    title_template: "[Campaign] {{title}}"
+
+  fields:
+    - key: title
+      type: string
+      label: Campaign Name
+      placeholder: "e.g., Q1 Product Launch Campaign"
+      required: true
+      max_length: 200
+      map_to: title
+
+    - key: objective
+      type: enum
+      label: Campaign Objective
+      required: true
+      options:
+        - value: awareness
+          label: "Brand Awareness"
+        - value: lead_gen
+          label: "Lead Generation"
+        - value: product_launch
+          label: "Product Launch"
+        - value: event_promotion
+          label: "Event Promotion"
+        - value: retention
+          label: "Customer Retention"
+        - value: other
+          label: "Other"
+      map_to: custom_fields.objective
+
+    - key: target_audience
+      type: text
+      label: Target Audience
+      placeholder: "Describe your target audience (demographics, personas, segments)"
+      required: true
+      map_to: custom_fields.target_audience
+
+    - key: key_messages
+      type: text
+      label: Key Messages
+      placeholder: "What are the main messages you want to communicate?"
+      required: true
+      map_to: custom_fields.key_messages
+
+    - key: budget
+      type: number
+      label: Budget ($)
+      placeholder: "Estimated budget"
+      required: true
+      min: 0
+      map_to: custom_fields.budget
+
+    - key: start_date
+      type: date
+      label: Desired Start Date
+      required: true
+      map_to: custom_fields.start_date
+
+    - key: end_date
+      type: date
+      label: Desired End Date
+      required: true
+      map_to: custom_fields.end_date
+
+    - key: channels
+      type: multi_enum
+      label: Preferred Channels
+      required: false
+      options:
+        - value: email
+          label: "Email Marketing"
+        - value: social_organic
+          label: "Social Media (Organic)"
+        - value: social_paid
+          label: "Social Media (Paid)"
+        - value: content
+          label: "Content Marketing"
+        - value: ppc
+          label: "PPC / Search Ads"
+        - value: events
+          label: "Events / Webinars"
+        - value: pr
+          label: "PR / Media"
+      map_to: custom_fields.channels
+
+    - key: description
+      type: markdown
+      label: Additional Details
+      placeholder: "Any other information, requirements, or context..."
+      required: false
+      map_to: description
+
+    - key: attachments
+      type: file
+      label: Supporting Materials
+      required: false
+      multiple: true
+      max_size: 50MB
+
+  confirmation:
+    title: "Campaign Brief Submitted"
+    message: |
+      Your campaign brief has been submitted to the marketing team.
+
+      **Campaign ID:** #{{issue.id}}
+
+      The team will review your brief and begin planning.
+
+  notifications:
+    on_submit:
+      - type: slack
+        channel: "#marketing-requests"
+        message: "📋 New campaign brief: {{title}} (Budget: ${{budget}})"

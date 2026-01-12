@@ -1,0 +1,13 @@
+model_version: "1.0"
+project:
+  id: marketing
+  name: Marketing Operations
+  version: 1.0.0
+  description: Marketing campaign management and content workflows.
+
+  extensions:
+    required:
+      - email
+    optional:
+      - slack
+      - hubspot

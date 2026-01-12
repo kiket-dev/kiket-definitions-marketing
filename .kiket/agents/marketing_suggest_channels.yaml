@@ -1,0 +1,60 @@
+model_version: "1.0"
+id: ai.marketing.suggest_channels
+version: 1.0.0
+name: Channel Recommender
+description: Suggest optimal marketing channels based on campaign objectives.
+
+prompt: |
+  Recommend marketing channels for this campaign.
+
+  **Campaign:**
+  - Title: {{issue.title}}
+  - Objective: {{issue.custom_fields.objective}}
+  - Target Audience: {{issue.custom_fields.target_audience}}
+  - Budget: {{issue.custom_fields.budget}}
+  - Industry: {{issue.custom_fields.industry}}
+
+  **Historical Performance:**
+  {{#each context.channel_performance}}
+  - {{this.channel}}: {{this.roi}}% ROI, {{this.reach}} reach
+  {{/each}}
+
+  Provide channel recommendations as structured data:
+  - channel: Name of the channel
+  - priority: high/medium/low
+  - budget_allocation: Suggested % of budget
+  - rationale: Why this channel fits
+  - expected_roi: Estimated ROI based on historical data
+
+capabilities:
+  - channel_recommendation
+  - budget_allocation
+
+context:
+  required:
+    - analytics
+  optional:
+    - documents
+
+human_in_loop:
+  required: false
+
+metadata:
+  output_format: json
+  max_tokens: 800
+  schema:
+    type: array
+    items:
+      type: object
+      properties:
+        channel:
+          type: string
+        priority:
+          type: string
+          enum: [high, medium, low]
+        budget_allocation:
+          type: number
+        rationale:
+          type: string
+        expected_roi:
+          type: number

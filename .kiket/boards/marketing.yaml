@@ -1,0 +1,74 @@
+model_version: "1.0"
+board:
+  id: campaigns-board
+  name: Campaign Board
+  description: Marketing campaign lifecycle tracking.
+  version: 1.0.0
+
+  filters:
+    issue_types:
+      - campaign
+    workflows:
+      - campaign
+
+  columns:
+    - id: brief
+      name: Brief
+      states:
+        - brief
+      wip_limit: null
+      color: secondary
+
+    - id: planning
+      name: Planning
+      states:
+        - planning
+      wip_limit: 5
+      color: info
+
+    - id: creating
+      name: Creating
+      states:
+        - creating
+      wip_limit: 5
+      color: primary
+
+    - id: review
+      name: Review
+      states:
+        - review
+      wip_limit: 3
+      color: warning
+
+    - id: live
+      name: Live
+      states:
+        - live
+      wip_limit: null
+      color: success
+
+    - id: analyzing
+      name: Analyzing
+      states:
+        - analyzing
+      wip_limit: null
+      color: info
+
+  card_fields:
+    - title
+    - custom_fields.objective
+    - custom_fields.budget
+    - custom_fields.start_date
+    - custom_fields.end_date
+    - assignee
+
+  quick_filters:
+    - field: assignee
+      label: My Campaigns
+      value: "@me"
+    - field: status
+      label: Active
+      values: [planning, creating, review, live]
+    - field: custom_fields.objective
+      label: Lead Gen
+      value: lead_gen

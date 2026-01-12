@@ -1,0 +1,45 @@
+model_version: "1.0"
+id: ai.marketing.analyze_brief
+version: 1.0.0
+name: Campaign Brief Analyzer
+description: Analyze campaign briefs for completeness and strategic alignment.
+
+prompt: |
+  Analyze this campaign brief for completeness and strategic fit.
+
+  **Campaign Brief:**
+  - Title: {{issue.title}}
+  - Objective: {{issue.custom_fields.objective}}
+  - Target Audience: {{issue.custom_fields.target_audience}}
+  - Budget: {{issue.custom_fields.budget}}
+  - Timeline: {{issue.custom_fields.timeline}}
+  - Description: {{issue.description}}
+
+  **Organization Context:**
+  - Brand Guidelines: {{context.brand_guidelines}}
+  - Recent Campaigns: {{context.recent_campaigns}}
+
+  Provide:
+  1. **Brief Completeness**: What's missing or needs clarification?
+  2. **Strategic Alignment**: How well does this align with brand goals?
+  3. **Target Audience Analysis**: Is the audience well-defined?
+  4. **Budget Assessment**: Is the budget realistic for the objectives?
+  5. **Risks & Considerations**: What should the team watch out for?
+  6. **Recommendations**: Suggestions to strengthen the campaign
+
+capabilities:
+  - brief_analysis
+  - strategic_assessment
+
+context:
+  required:
+    - documents
+  optional:
+    - issues
+
+human_in_loop:
+  required: false
+
+metadata:
+  output_format: markdown
+  max_tokens: 1200

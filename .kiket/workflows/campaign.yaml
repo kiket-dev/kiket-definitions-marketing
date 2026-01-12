@@ -1,0 +1,130 @@
+model_version: "1.0"
+workflow:
+  id: campaign
+  name: Marketing Campaign
+  version: 1.0.0
+  description: Marketing campaign lifecycle from brief to analysis.
+
+states:
+  brief:
+    type: initial
+    category: pending
+    metadata:
+      label: Brief
+      color: secondary
+      icon: "📋"
+      description: Campaign brief submitted.
+    on_enter:
+      - action: ai_analyze
+        agent: ai.marketing.analyze_brief
+        store_result_in: comment
+      - action: ai_suggest
+        agent: ai.marketing.suggest_channels
+        store_result_in: custom_fields.recommended_channels
+
+  planning:
+    type: active
+    category: active
+    metadata:
+      label: Planning
+      color: info
+      icon: "📝"
+      description: Campaign being planned.
+    checklist:
+      id: campaign_planning
+      title: Planning Checklist
+      required_mode: all
+      items:
+        - id: audience_defined
+          label: Target audience defined
+          check_type: manual
+          required: true
+        - id: budget_allocated
+          label: Budget allocation set
+          check_type: manual
+          required: true
+        - id: content_calendar
+          label: Content calendar created
+          check_type: manual
+        - id: tracking_setup
+          label: Tracking pixels set up
+          check_type: manual
+
+  creating:
+    type: active
+    category: active
+    metadata:
+      label: Creating
+      color: primary
+      icon: "🎨"
+      description: Content being created.
+    on_enter:
+      - action: ai_generate
+        agent: ai.marketing.generate_copy
+        store_result_in: comment
+        input:
+          type: draft
+
+  review:
+    type: active
+    category: review
+    metadata:
+      label: Review
+      color: warning
+      icon: "👁️"
+      description: Awaiting approval.
+    approval:
+      required: 1
+      approvers:
+        - role: marketing_lead
+
+  live:
+    type: active
+    category: active
+    metadata:
+      label: Live
+      color: success
+      icon: "🚀"
+      description: Campaign is live.
+    on_enter:
+      - action: notify
+        recipients:
+          roles: [marketing, sales]
+        message: "🚀 Campaign live: ${issue.title}"
+        level: info
+
+  analyzing:
+    type: final
+    category: completed
+    metadata:
+      label: Analyzing
+      color: secondary
+      icon: "📊"
+      description: Campaign complete, analyzing results.
+    on_enter:
+      - action: ai_analyze
+        agent: ai.marketing.analyze_performance
+        store_result_in: comment
+
+transitions:
+  - from: brief
+    to: planning
+    name: Start Planning
+  - from: planning
+    to: creating
+    name: Begin Creation
+    conditions:
+      - checklist: campaign_planning
+        complete: true
+  - from: creating
+    to: review
+    name: Submit for Review
+  - from: review
+    to: creating
+    name: Request Changes
+  - from: review
+    to: live
+    name: Approve & Launch
+  - from: live
+    to: analyzing
+    name: End Campaign

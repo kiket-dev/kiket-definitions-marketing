@@ -1,0 +1,50 @@
+model_version: "1.0"
+id: ai.marketing.analyze_performance
+version: 1.0.0
+name: Campaign Performance Analyzer
+description: Analyze campaign results and provide insights.
+
+prompt: |
+  Analyze the performance of this completed campaign.
+
+  **Campaign:**
+  - Title: {{issue.title}}
+  - Objective: {{issue.custom_fields.objective}}
+  - Budget: {{issue.custom_fields.budget}}
+  - Duration: {{issue.custom_fields.start_date}} to {{issue.custom_fields.end_date}}
+  - Channels: {{issue.custom_fields.channels}}
+
+  **Performance Metrics:**
+  {{#each context.metrics}}
+  - {{this.name}}: {{this.value}} (target: {{this.target}})
+  {{/each}}
+
+  **Spend Breakdown:**
+  {{#each context.spend}}
+  - {{this.channel}}: ${{this.amount}} ({{this.percentage}}%)
+  {{/each}}
+
+  Provide comprehensive analysis:
+  1. **Executive Summary**: Key outcomes in 2-3 sentences
+  2. **Goal Achievement**: Did we hit our objectives?
+  3. **Channel Performance**: Which channels performed best/worst?
+  4. **ROI Analysis**: Return on investment breakdown
+  5. **Audience Insights**: What did we learn about our audience?
+  6. **Lessons Learned**: What worked, what didn't
+  7. **Recommendations**: Actions for future campaigns
+
+capabilities:
+  - performance_analysis
+  - insights_generation
+
+context:
+  required:
+    - analytics
+    - metrics
+
+human_in_loop:
+  required: false
+
+metadata:
+  output_format: markdown
+  max_tokens: 1500

@@ -1,0 +1,50 @@
+# kiket-definitions-marketing
+
+Marketing campaign management workflows for Kiket.
+
+## Overview
+
+This definition provides marketing operations workflows including:
+
+- **Workflow**: Campaign lifecycle from brief to analysis
+- **AI Agents**: Brief analysis, channel recommendations, copy generation, performance analysis
+- **Intake Form**: Internal campaign brief submission
+- **Board**: Campaign board with lifecycle stages
+
+## Structure
+
+```
+.kiket/
+├── project.yaml           # Definition metadata
+├── issue_types.yaml       # Campaign and content issue types
+├── workflows/
+│   └── campaign.yaml      # Campaign lifecycle workflow
+├── agents/
+│   ├── marketing_analyze_brief.yaml
+│   ├── marketing_suggest_channels.yaml
+│   ├── marketing_generate_copy.yaml
+│   └── marketing_analyze_performance.yaml
+├── intakes/
+│   └── campaign_brief.yaml
+└── boards/
+    └── marketing.yaml
+```
+
+## Installation
+
+Install via Kiket marketplace or include in your project configuration:
+
+```yaml
+definitions:
+  - id: marketing
+    version: ">=1.0.0"
+```
+
+## Required Extensions
+
+- `email` - Email notifications
+
+## Optional Extensions
+
+- `slack` - Team notifications
+- `hubspot` - Marketing automation integration

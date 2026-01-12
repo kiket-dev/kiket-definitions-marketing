@@ -10,6 +10,7 @@ This definition provides marketing operations workflows including:
 - **AI Agents**: Brief analysis, channel recommendations, copy generation, performance analysis
 - **Intake Form**: Internal campaign brief submission
 - **Board**: Campaign board with lifecycle stages
+- **Analytics**: Campaign ROI, lead generation, channel effectiveness, cost per lead
 
 ## Structure
 
@@ -26,8 +27,11 @@ This definition provides marketing operations workflows including:
 │   └── marketing_analyze_performance.yaml
 ├── intakes/
 │   └── campaign_brief.yaml
-└── boards/
-    └── marketing.yaml
+├── boards/
+│   └── marketing.yaml
+└── analytics/
+    └── dashboards/
+        └── campaign_performance.yaml
 ```
 
 ## Installation

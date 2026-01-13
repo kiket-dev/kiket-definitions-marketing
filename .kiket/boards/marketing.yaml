@@ -2,73 +2,77 @@ model_version: "1.0"
 board:
   id: campaigns-board
   name: Campaign Board
+  type: kanban
   description: Marketing campaign lifecycle tracking.
-  version: 1.0.0
+  workflow: campaign
 
-  filters:
-    issue_types:
-      - campaign
-    workflows:
-      - campaign
+filters:
+  issue_types:
+    - campaign
+  workflows:
+    - campaign
 
-  columns:
-    - id: brief
-      name: Brief
-      states:
-        - brief
-      wip_limit: null
-      color: secondary
+columns:
+  - key: brief
+    name: Brief
+    states:
+      - brief
+    color: secondary
 
-    - id: planning
-      name: Planning
-      states:
-        - planning
-      wip_limit: 5
-      color: info
+  - key: planning
+    name: Planning
+    states:
+      - planning
+    wip_limit: 5
+    color: info
 
-    - id: creating
-      name: Creating
-      states:
-        - creating
-      wip_limit: 5
-      color: primary
+  - key: creating
+    name: Creating
+    states:
+      - creating
+    wip_limit: 5
+    color: primary
 
-    - id: review
-      name: Review
-      states:
-        - review
-      wip_limit: 3
-      color: warning
+  - key: review
+    name: Review
+    states:
+      - review
+    wip_limit: 3
+    color: warning
 
-    - id: live
-      name: Live
-      states:
-        - live
-      wip_limit: null
-      color: success
+  - key: live
+    name: Live
+    states:
+      - live
+    color: success
 
-    - id: analyzing
-      name: Analyzing
-      states:
-        - analyzing
-      wip_limit: null
-      color: info
+  - key: analyzing
+    name: Analyzing
+    states:
+      - analyzing
+    color: info
 
-  card_fields:
-    - title
-    - custom_fields.objective
-    - custom_fields.budget
-    - custom_fields.start_date
-    - custom_fields.end_date
-    - assignee
+card_template:
+  size: compact
+  fields:
+    primary:
+      - title
+      - assignee
+    secondary:
+      - custom_fields.objective
+      - custom_fields.budget
+      - custom_fields.start_date
+      - custom_fields.end_date
+  badges:
+    - type: comments_count
 
-  quick_filters:
-    - field: assignee
-      label: My Campaigns
-      value: "@me"
-    - field: status
-      label: Active
-      values: [planning, creating, review, live]
-    - field: custom_fields.objective
-      label: Lead Gen
-      value: lead_gen
+quick_filters:
+  - field: assignee
+    label: My Campaigns
+    value: "@me"
+  - field: status
+    label: Active
+    values: [planning, creating, review, live]
+  - field: custom_fields.objective
+    label: Lead Gen
+    value: lead_gen

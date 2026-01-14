@@ -5,6 +5,15 @@ project:
   version: 1.0.0
   description: Marketing campaign management and content workflows.
 
+  team:
+    roles:
+      - name: marketer
+        description: Marketing specialist executing campaigns
+      - name: content_creator
+        description: Content writer and creative asset producer
+      - name: analyst
+        description: Marketing analyst tracking metrics and ROI
+
   extensions:
     required:
       - email

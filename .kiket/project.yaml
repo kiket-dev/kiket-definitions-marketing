@@ -1,6 +1,6 @@
 model_version: "1.0"
 project:
-  id: marketing
+  key: MARKETING
   name: Marketing Operations
   version: 1.0.0
   description: Marketing campaign management and content workflows.

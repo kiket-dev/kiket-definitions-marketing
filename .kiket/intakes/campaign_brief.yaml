@@ -1,5 +1,5 @@
 model_version: "1.0"
-intake:
+intake_form:
   id: campaign-brief
   name: Campaign Brief
   description: Submit a new marketing campaign request.

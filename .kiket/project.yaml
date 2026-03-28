@@ -20,3 +20,59 @@ project:
     optional:
       - slack
       - hubspot
+
+  seed_data:
+    issues:
+      - title: Q3 product launch campaign for enterprise tier
+        description: Full-funnel campaign to announce the new enterprise plan. Includes landing page, email sequence, paid social, and webinar.
+        issue_type: campaign
+        status: planning
+        priority: high
+        labels:
+          - product-launch
+          - enterprise
+
+      - title: Write case study for Acme Corp onboarding success
+        description: Interview the Acme Corp customer success team and draft a 1,200-word case study highlighting 40% faster onboarding.
+        issue_type: content
+        status: creating
+        priority: medium
+        labels:
+          - case-study
+          - customer-stories
+
+      - title: Design social media ad set for developer conference
+        description: Create 5 static and 2 animated ad creatives for LinkedIn and Twitter targeting the DevOps Summit audience.
+        issue_type: asset
+        status: review
+        priority: medium
+        labels:
+          - paid-social
+          - conference
+
+      - title: Monthly newsletter - July edition
+        description: Curate product updates, community highlights, and a customer spotlight for the July subscriber newsletter.
+        issue_type: content
+        status: brief
+        priority: low
+        labels:
+          - newsletter
+          - recurring
+
+      - title: SEO content cluster for workflow automation
+        description: Plan and produce a 5-article content cluster targeting workflow automation keywords. Includes pillar page and supporting posts.
+        issue_type: campaign
+        status: creating
+        priority: high
+        labels:
+          - seo
+          - content-marketing
+
+      - title: Rebrand email templates to new design system
+        description: Update all transactional and marketing email templates to use the refreshed brand colors, typography, and footer.
+        issue_type: asset
+        status: live
+        priority: medium
+        labels:
+          - brand
+          - email

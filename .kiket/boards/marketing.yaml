@@ -7,7 +7,7 @@ board:
   workflow: campaign
 
 filters:
-  issue_types:
+  case_types:
     - campaign
   workflows:
     - campaign

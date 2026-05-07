@@ -11,11 +11,11 @@ agent:
         Recommend marketing channels for this campaign.
 
         **Campaign:**
-        - Title: {{issue.title}}
-        - Objective: {{issue.custom_fields.objective}}
-        - Target Audience: {{issue.custom_fields.target_audience}}
-        - Budget: {{issue.custom_fields.budget}}
-        - Industry: {{issue.custom_fields.industry}}
+        - Title: {{case.title}}
+        - Objective: {{case.custom_fields.objective}}
+        - Target Audience: {{case.custom_fields.target_audience}}
+        - Budget: {{case.custom_fields.budget}}
+        - Industry: {{case.custom_fields.industry}}
 
         **Historical Performance:**
         {{#each context.channel_performance}}

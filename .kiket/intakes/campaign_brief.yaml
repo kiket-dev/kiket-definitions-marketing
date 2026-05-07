@@ -120,7 +120,7 @@ intake_form:
     message: |
       Your campaign brief has been submitted to the marketing team.
 
-      **Campaign ID:** #{{issue.id}}
+      **Campaign ID:** #{{case.id}}
 
       The team will review your brief and begin planning.
 

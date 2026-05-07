@@ -11,12 +11,12 @@ agent:
         Analyze this campaign brief for completeness and strategic fit.
 
         **Campaign Brief:**
-        - Title: {{issue.title}}
-        - Objective: {{issue.custom_fields.objective}}
-        - Target Audience: {{issue.custom_fields.target_audience}}
-        - Budget: {{issue.custom_fields.budget}}
-        - Timeline: {{issue.custom_fields.timeline}}
-        - Description: {{issue.description}}
+        - Title: {{case.title}}
+        - Objective: {{case.custom_fields.objective}}
+        - Target Audience: {{case.custom_fields.target_audience}}
+        - Budget: {{case.custom_fields.budget}}
+        - Timeline: {{case.custom_fields.timeline}}
+        - Description: {{case.description}}
 
         **Organization Context:**
         - Brand Guidelines: {{context.brand_guidelines}}

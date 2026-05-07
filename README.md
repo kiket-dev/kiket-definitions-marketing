@@ -10,13 +10,13 @@ This definition provides marketing operations workflows including:
 - **AI Agents**: Brief analysis, channel recommendations, copy generation, performance analysis
 - **Intake Form**: Internal campaign brief submission
 - **Board**: Campaign board with lifecycle stages
-- **Analytics**: Campaign ROI, lead generation, channel effectiveness, cost per lead
+- **Dashboards**: Campaign ROI, lead generation, channel effectiveness, cost per lead
 
 ## Structure
 
 ```
 .kiket/
-├── project.yaml           # Definition metadata
+├── workspace.yaml           # Definition metadata
 ├── case_types.yaml       # Campaign and content case types
 ├── workflows/
 │   └── campaign.yaml      # Campaign lifecycle workflow

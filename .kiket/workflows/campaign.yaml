@@ -90,7 +90,7 @@ states:
       - action: notify
         recipients:
           roles: [marketing, sales]
-        message: "🚀 Campaign live: ${issue.title}"
+        message: "🚀 Campaign live: ${case.title}"
         level: info
 
   analyzing:

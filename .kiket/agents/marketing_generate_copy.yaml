@@ -11,12 +11,12 @@ agent:
         Generate marketing copy for this campaign.
 
         **Campaign:**
-        - Title: {{issue.title}}
-        - Objective: {{issue.custom_fields.objective}}
-        - Target Audience: {{issue.custom_fields.target_audience}}
-        - Key Messages: {{issue.custom_fields.key_messages}}
-        - Tone: {{issue.custom_fields.tone}}
-        - Channels: {{issue.custom_fields.channels}}
+        - Title: {{case.title}}
+        - Objective: {{case.custom_fields.objective}}
+        - Target Audience: {{case.custom_fields.target_audience}}
+        - Key Messages: {{case.custom_fields.key_messages}}
+        - Tone: {{case.custom_fields.tone}}
+        - Channels: {{case.custom_fields.channels}}
 
         **Brand Voice Guidelines:**
         {{context.brand_voice}}
